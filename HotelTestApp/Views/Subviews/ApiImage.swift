@@ -10,9 +10,9 @@ import SwiftUI
 
 struct RemoteImage: View {
     let url: String
-
+    
     @State var image: Image?
-
+    
     var body: some View {
         Group {
             if let image = image {
@@ -28,10 +28,10 @@ struct RemoteImage: View {
             }
         }
     }
-
+    
     private func loadImage() {
         guard let imageUrl = URL(string: url) else { return }
-
+        
         URLSession.shared.dataTask(with: imageUrl) { data, _, error in
             if let data = data, let uiImage = UIImage(data: data) {
                 DispatchQueue.main.async {

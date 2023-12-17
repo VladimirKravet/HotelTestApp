@@ -31,10 +31,7 @@ struct DoneView: View {
                 }
                 Spacer()
                 Text("Заказ оплачен")
-                    .font(
-                        Font.custom("SF Pro Display", size: 18)
-                            .weight(.medium)
-                    )
+                    .customFont(.medium, fontSizeForiPhone: 18, fontSizeForiPad: 18)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.black)
                     .padding(.trailing, MyAdaptive.shared.setDynamicValue(iPhoneValue: 32, iPadValue: 32))
@@ -50,18 +47,15 @@ struct DoneView: View {
                 .frame(width: MyAdaptive.shared.setDynamicValue(iPhoneValue: 94, iPadValue: 94),height: MyAdaptive.shared.setDynamicValue(iPhoneValue: 94, iPadValue: 94))
                 .padding(.bottom, MyAdaptive.shared.setDynamicValue(iPhoneValue: 32, iPadValue: 32))
             Text("Ваш заказ принят в работу")
-                .font(
-                    Font.custom("SF Pro Display", size: 22)
-                        .weight(.medium)
-                )
+                .customFont(.medium, fontSizeForiPhone: 22, fontSizeForiPad: 22)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.black)
                 .padding(.bottom, MyAdaptive.shared.setDynamicValue(iPhoneValue: 20, iPadValue: 20))
             Text("Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.")
-            .font(Font.custom("SF Pro Display", size: 16))
-            .multilineTextAlignment(.center)
-            .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
-            .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
+                .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
+                .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
             Spacer()
             Button {
                 viewModel.resetAllInfo()
@@ -76,10 +70,7 @@ struct DoneView: View {
             } label: {
                 VStack {
                     Text("Супер!")
-                        .font(
-                            Font.custom("SF Pro Display", size: 16)
-                                .weight(.medium)
-                        )
+                        .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                         .kerning(0.1)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)

@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-//struct Tourist: Identifiable {
-//    let id: UUID
-//    var name: String
-//    var surName: String
-//    var citizenship: String
-//    var passportNumber: String
-//    var expiredDateOfPassport: String
-//}
 class Tourist: Identifiable, Codable {
     var id: String = UUID().uuidString
     var name: String = ""

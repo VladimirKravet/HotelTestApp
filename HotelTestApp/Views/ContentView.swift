@@ -20,10 +20,7 @@ struct ContentView: View {
                     if let hotel = viewModel.hotel {
                         VStack(spacing: 0) {
                             Text("Отель")
-                                .font(
-                                    Font.custom("SF Pro Display", size: 18)
-                                        .weight(.medium)
-                                )
+                                .customFont(.medium, fontSizeForiPhone: 18, fontSizeForiPad: 18)
                                 .foregroundColor(.black)
                                 .padding(.bottom, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
                             TabView {
@@ -44,17 +41,11 @@ struct ContentView: View {
                                         .padding(.leading, MyAdaptive.shared.setDynamicValue(iPhoneValue: 10, iPadValue: 10))
                                         .padding(.trailing, MyAdaptive.shared.setDynamicValue(iPhoneValue: 2, iPadValue: 4))
                                     Text(hotel.rating.description)
-                                        .font(
-                                            Font.custom("SF Pro Display", size: 16)
-                                                .weight(.medium)
-                                        )
+                                        .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                         .foregroundColor(Color(red: 1, green: 0.66, blue: 0))
                                         .padding(.trailing, MyAdaptive.shared.setDynamicValue(iPhoneValue: 4, iPadValue: 4))
                                     Text(hotel.ratingName)
-                                        .font(
-                                            Font.custom("SF Pro Display", size: 16)
-                                                .weight(.medium)
-                                        )
+                                        .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                         .foregroundColor(Color(red: 1, green: 0.66, blue: 0))
                                         .padding(.trailing, MyAdaptive.shared.setDynamicValue(iPhoneValue: 10, iPadValue: 10))
                                         .padding(.vertical, MyAdaptive.shared.setDynamicValue(iPhoneValue: 5, iPadValue: 5))
@@ -63,10 +54,7 @@ struct ContentView: View {
                                 .cornerRadius(MyAdaptive.shared.setDynamicValue(iPhoneValue: 5, iPadValue: 5))
                                 
                                 Text(hotel.name)
-                                    .font(
-                                        Font.custom("SF Pro Display", size: 22)
-                                            .weight(.medium)
-                                    )
+                                    .customFont(.medium, fontSizeForiPhone: 22, fontSizeForiPad: 22)
                                     .foregroundColor(.black)
                                     .padding(.vertical, MyAdaptive.shared.setDynamicValue(iPhoneValue: 8, iPadValue: 8))
                                 
@@ -74,24 +62,18 @@ struct ContentView: View {
                                     print("tapped")
                                 } label: {
                                     Text(hotel.address)
-                                        .font(
-                                            Font.custom("SF Pro Display", size: 14)
-                                                .weight(.medium)
-                                        )
+                                        .customFont(.medium, fontSizeForiPhone: 14, fontSizeForiPad: 14)
                                         .foregroundColor(Color(red: 0.05, green: 0.45, blue: 1))
                                         .multilineTextAlignment(.leading)
                                 }
                                 HStack {
                                     if let formattedPrice = viewModel.formatPrice(hotel.minimalPrice) {
                                         Text("от \(formattedPrice) ₽")
-                                            .font(
-                                                Font.custom("SF Pro Display", size: 30)
-                                                    .weight(.heavy)
-                                            )
+                                            .customFont(.medium, fontSizeForiPhone: 30, fontSizeForiPad: 30)
                                             .foregroundColor(.black)
                                     }
                                     Text("за тур с перелётом")
-                                        .font(Font.custom("SF Pro Display", size: 16))
+                                        .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                         .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
                                         .padding(.leading, MyAdaptive.shared.setDynamicValue(iPhoneValue: 8, iPadValue: 8))
                                         .padding(.top, MyAdaptive.shared.setDynamicValue(iPhoneValue: 12, iPadValue: 12))
@@ -109,39 +91,32 @@ struct ContentView: View {
                             VStack(spacing: 0) {
                                 HStack(spacing: 0) {
                                     Text("Об отеле")
-                                        .font(
-                                            Font.custom("SF Pro Display", size: 22)
-                                                .weight(.medium)
-                                        )
+                                        .customFont(.medium, fontSizeForiPhone: 22, fontSizeForiPad: 22)
                                         .foregroundColor(.black)
                                     Spacer()
                                 }
                                 .padding(.top, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
                                 .padding(.bottom, MyAdaptive.shared.setDynamicValue(iPhoneValue: 21, iPadValue: 21))
- //                               ScrollView(.horizontal, showsIndicators: false) {
-                                    LazyVGrid(columns: Array(repeating: GridItem(), count: 2), alignment: .leading, spacing: 8) {
-                                        ForEach(hotel.aboutTheHotel.peculiarities, id: \.self) { peculiarity in
-                                            Text(peculiarity)
-                                                .font(
-                                                    Font.custom("SF Pro Display", size: 14)
-                                                        .weight(.regular)
-                                                )
- //                                               .multilineTextAlignment(.center)
-                                                .lineLimit(nil)
-                                                .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
-                                                .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 10, iPadValue: 10))
-                                                .padding(.vertical, MyAdaptive.shared.setDynamicValue(iPhoneValue: 5, iPadValue: 5))
-                                                .background(Color(red: 0.98, green: 0.98, blue: 0.99))
-                                                .cornerRadius(MyAdaptive.shared.setDynamicValue(iPhoneValue: 5, iPadValue: 5))
-  //                                              .fixedSize(horizontal: true, vertical: true)
-                                        }
-//                                        .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 64, iPadValue: 64))
-//                                            .padding(.vertical, MyAdaptive.shared.setDynamicValue(iPhoneValue: 8, iPadValue: 8))
-//                                            .padding(.leading, MyAdaptive.shared.setDynamicValue(iPhoneValue: 64, iPadValue: 64))
+                                //                               ScrollView(.horizontal, showsIndicators: false) {
+                                LazyVGrid(columns: Array(repeating: GridItem(), count: 2), alignment: .leading, spacing: 8) {
+                                    ForEach(hotel.aboutTheHotel.peculiarities, id: \.self) { peculiarity in
+                                        Text(peculiarity)
+                                            .customFont(.medium, fontSizeForiPhone: 14, fontSizeForiPad: 14)
+                                            .lineLimit(nil)
+                                            .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
+                                            .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 10, iPadValue: 10))
+                                            .padding(.vertical, MyAdaptive.shared.setDynamicValue(iPhoneValue: 5, iPadValue: 5))
+                                            .background(Color(red: 0.98, green: 0.98, blue: 0.99))
+                                            .cornerRadius(MyAdaptive.shared.setDynamicValue(iPhoneValue: 5, iPadValue: 5))
+                                        //                                              .fixedSize(horizontal: true, vertical: true)
                                     }
-  //                              }
+                                    //                                        .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 64, iPadValue: 64))
+                                    //                                            .padding(.vertical, MyAdaptive.shared.setDynamicValue(iPhoneValue: 8, iPadValue: 8))
+                                    //                                            .padding(.leading, MyAdaptive.shared.setDynamicValue(iPhoneValue: 64, iPadValue: 64))
+                                }
+                                //                              }
                                 Text(hotel.aboutTheHotel.description)
-                                    .font(Font.custom("SF Pro Display", size: 16))
+                                    .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                     .foregroundColor(.black.opacity(0.9))
                                     .padding(.top, MyAdaptive.shared.setDynamicValue(iPhoneValue: 17, iPadValue: 17))
                                     .padding(.bottom, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
@@ -175,10 +150,7 @@ struct ContentView: View {
                             } label: {
                                 VStack {
                                     Text("К выбору номера")
-                                        .font(
-                                            Font.custom("SF Pro Display", size: 16)
-                                                .weight(.medium)
-                                        )
+                                        .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                         .kerning(0.1)
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(.white)

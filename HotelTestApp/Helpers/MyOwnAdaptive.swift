@@ -275,8 +275,8 @@ public extension MyAdaptive {
         }
 
         if currentIphoneSize == .iPhoneSE3rdGen {
-            widthCoefficient = 0.565
-            heightCoefficient = 0.565
+            widthCoefficient = 0.3
+            heightCoefficient = 0.3
         }
 
         let widthCorrection = isIPad ? (currentWidth - staticWidthIpad8) / staticWidthIpad8 : (currentWidth - staticWidthIphone14) / staticWidthIphone14
@@ -313,8 +313,8 @@ public extension MyAdaptive {
         }
 
         if currentIphoneSize == .iPhoneSE3rdGen {
-            widthCoefficient = 0.565
-            heightCoefficient = 0.565
+            widthCoefficient = 0.3
+            heightCoefficient = 0.3
         }
 
         let widthCorrection = isIPad ? (currentWidth - staticWidthIpad8) / staticWidthIpad8 : (currentWidth - staticWidthIphone14) / staticWidthIphone14

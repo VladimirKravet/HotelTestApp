@@ -28,18 +28,12 @@ struct HotelMainView: View {
                         Spacer()
                         if let hotelName = viewModel.selectHotel?.name {
                             Text(hotelName)
-                                .font(
-                                    Font.custom("SF Pro Display", size: 18)
-                                        .weight(.medium)
-                                )
+                                .customFont(.medium, fontSizeForiPhone: 18, fontSizeForiPad: 18)
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(.black)
                         } else {
                             Text("No hotel selected")
-                                .font(
-                                    Font.custom("SF Pro Display", size: 18)
-                                        .weight(.medium)
-                                )
+                                .customFont(.medium, fontSizeForiPhone: 18, fontSizeForiPad: 18)
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(.black)
                         }
@@ -63,20 +57,14 @@ struct HotelMainView: View {
                                 .padding(.bottom, MyAdaptive.shared.setDynamicValue(iPhoneValue: 8, iPadValue: 8))
                                 VStack(alignment: .leading, spacing: 0) {
                                     Text(room.name)
-                                        .font(
-                                            Font.custom("SF Pro Display", size: 22)
-                                                .weight(.medium)
-                                        )
+                                        .customFont(.medium, fontSizeForiPhone: 22, fontSizeForiPad: 22)
                                         .foregroundColor(.black)
                                         .padding(.vertical, MyAdaptive.shared.setDynamicValue(iPhoneValue: 8, iPadValue: 8))
                                     
                                     LazyVGrid(columns: [GridItem(.flexible(), spacing: 8), GridItem(.flexible(), spacing: 8)], alignment: .leading, spacing: 8) {
                                         ForEach(room.peculiarities, id: \.self) { peculiarity in
                                             Text(peculiarity)
-                                                .font(
-                                                    Font.custom("SF Pro Display", size: 15)
-                                                        .weight(.regular)
-                                                )
+                                                .customFont(.medium, fontSizeForiPhone: 15, fontSizeForiPad: 15)
                                                 .lineLimit(1)
                                                 .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
                                                 .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 10, iPadValue: 10))
@@ -93,10 +81,7 @@ struct HotelMainView: View {
                                     } label: {
                                         HStack{
                                             Text("Подробнее о номере")
-                                                .font(
-                                                    Font.custom("SF Pro Display", size: 16)
-                                                        .weight(.medium)
-                                                )
+                                                .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                                 .multilineTextAlignment(.center)
                                                 .foregroundColor(Color(red: 0.05, green: 0.45, blue: 1))
                                             Image("blueArrow")
@@ -116,14 +101,11 @@ struct HotelMainView: View {
                                 HStack {
                                     if let formattedPrice = viewModel.formatPrice(room.price) {
                                         Text("\(formattedPrice) ₽")
-                                            .font(
-                                                Font.custom("SF Pro Display", size: 30)
-                                                    .weight(.heavy)
-                                            )
+                                            .customFont(.medium, fontSizeForiPhone: 30, fontSizeForiPad: 30)
                                             .foregroundColor(.black)
                                     }
                                     Text("за 7 ночей с перелётом")
-                                        .font(Font.custom("SF Pro Display", size: 16))
+                                        .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                         .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
                                         .padding(.leading, MyAdaptive.shared.setDynamicValue(iPhoneValue: 8, iPadValue: 8))
                                         .padding(.top, MyAdaptive.shared.setDynamicValue(iPhoneValue: 12, iPadValue: 12))
@@ -136,10 +118,7 @@ struct HotelMainView: View {
                                 } label: {
                                     VStack {
                                         Text("Выбрать номер")
-                                            .font(
-                                                Font.custom("SF Pro Display", size: 16)
-                                                    .weight(.medium)
-                                            )
+                                            .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                             .kerning(0.1)
                                             .multilineTextAlignment(.center)
                                             .foregroundColor(.white)

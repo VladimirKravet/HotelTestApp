@@ -15,7 +15,7 @@ enum SFDisplay: String {
 }
 
 extension Font {
-    static func exo2(_ name: SFDisplay, size: CGFloat) -> Font {
+    static func SFDisplay(_ name: SFDisplay, size: CGFloat) -> Font {
         return .custom(name.rawValue, size: size)
     }
 }

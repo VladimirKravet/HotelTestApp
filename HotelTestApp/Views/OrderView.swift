@@ -41,10 +41,7 @@ struct OrderView: View {
                         }
                         Spacer()
                         Text("Бронирование")
-                            .font(
-                                Font.custom("SF Pro Display", size: 18)
-                                    .weight(.medium)
-                            )
+                            .customFont(.medium, fontSizeForiPhone: 18, fontSizeForiPad: 18)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.black)
                             .padding(.trailing, MyAdaptive.shared.setDynamicValue(iPhoneValue: 32, iPadValue: 32))
@@ -62,17 +59,11 @@ struct OrderView: View {
                                     .padding(.leading, MyAdaptive.shared.setDynamicValue(iPhoneValue: 10, iPadValue: 10))
                                     .padding(.trailing, MyAdaptive.shared.setDynamicValue(iPhoneValue: 2, iPadValue: 4))
                                 Text(bookingInfo.hoRating.description)
-                                    .font(
-                                        Font.custom("SF Pro Display", size: 16)
-                                            .weight(.medium)
-                                    )
+                                    .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                     .foregroundColor(Color(red: 1, green: 0.66, blue: 0))
                                     .padding(.trailing, MyAdaptive.shared.setDynamicValue(iPhoneValue: 4, iPadValue: 4))
                                 Text(bookingInfo.ratingName)
-                                    .font(
-                                        Font.custom("SF Pro Display", size: 16)
-                                            .weight(.medium)
-                                    )
+                                    .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                     .foregroundColor(Color(red: 1, green: 0.66, blue: 0))
                                     .padding(.trailing, MyAdaptive.shared.setDynamicValue(iPhoneValue: 10, iPadValue: 10))
                                     .padding(.vertical, MyAdaptive.shared.setDynamicValue(iPhoneValue: 5, iPadValue: 5))
@@ -81,10 +72,7 @@ struct OrderView: View {
                             .cornerRadius(MyAdaptive.shared.setDynamicValue(iPhoneValue: 5, iPadValue: 5))
                             .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
                             Text(bookingInfo.hotelName)
-                                .font(
-                                    Font.custom("SF Pro Display", size: 22)
-                                        .weight(.medium)
-                                )
+                                .customFont(.medium, fontSizeForiPhone: 22, fontSizeForiPad: 22)
                                 .foregroundColor(.black)
                                 .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
                             Button {
@@ -92,12 +80,8 @@ struct OrderView: View {
                             } label: {
                                 HStack {
                                     Text(bookingInfo.hotelAddress)
+                                        .customFont(.medium, fontSizeForiPhone: 14, fontSizeForiPad: 14)
                                         .multilineTextAlignment(.leading)
-                                        .font(
-                                            Font.custom("SF Pro Display", size: 14)
-                                                .weight(.medium)
-                                            
-                                        )
                                         .foregroundColor(Color(red: 0.05, green: 0.45, blue: 1))
                                     Spacer()
                                 }
@@ -115,16 +99,16 @@ struct OrderView: View {
                             FlightInfoView(title: "Страна, город", value: bookingInfo.arrivalCountry)
                             HStack {
                                 Text("Даты")
-                                    .font(Font.custom("SF Pro Display", size: 16))
+                                    .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                     .multilineTextAlignment(.leading)
                                     .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
                                 Spacer()
                                 HStack{
                                     Text(bookingInfo.tourDateStart)
-                                        .font(Font.custom("SF Pro Display", size: 16))
+                                        .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                         .foregroundColor(.black)
                                     Text("- \(bookingInfo.tourDateStop)")
-                                        .font(Font.custom("SF Pro Display", size: 16))
+                                        .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                         .foregroundColor(.black)
                                 }.frame(width: MyAdaptive.shared.setDynamicValue(iPhoneValue: 203, iPadValue: 203), alignment: .topLeading)
                             }
@@ -141,10 +125,7 @@ struct OrderView: View {
                         VStack {
                             HStack {
                                 Text("Информация о покупателе")
-                                    .font(
-                                        Font.custom("SF Pro Display", size: 22)
-                                            .weight(.medium)
-                                    )
+                                    .customFont(.medium, fontSizeForiPhone: 22, fontSizeForiPad: 22)
                                     .foregroundColor(.black)
                                 Spacer()
                             }
@@ -154,7 +135,7 @@ struct OrderView: View {
                             VStack(alignment: .leading) {
                                 ZStack(alignment: .leading) {
                                     TextField("examplemail.000@mail.ru", text: $viewModel.email)
-                                        .font(Font.custom("SF Pro Display", size: 16))
+                                        .font(Font.custom("SF Pro Display", size: MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16)))
                                         .kerning(0.75)
                                         .frame(height: MyAdaptive.shared.setDynamicValue(iPhoneValue: 52, iPadValue: 52))
                                         .foregroundColor(Color(red: 0.08, green: 0.08, blue: 0.17))
@@ -165,7 +146,7 @@ struct OrderView: View {
                                         }
                                     
                                     Text("Почта")
-                                        .font(Font.custom("SF Pro Display", size: 12))
+                                        .customFont(.medium, fontSizeForiPhone: 12, fontSizeForiPad: 12)
                                         .kerning(0.12)
                                         .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
                                         .background(Color.clear)
@@ -179,7 +160,7 @@ struct OrderView: View {
                             .cornerRadius(10)
                             .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
                             Text("Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту")
-                                .font(Font.custom("SF Pro Display", size: 14))
+                                .customFont(.medium, fontSizeForiPhone: 14, fontSizeForiPad: 14)
                                 .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
                                 .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
                         }
@@ -195,10 +176,7 @@ struct OrderView: View {
                             } label: {
                                 HStack {
                                     Text("Первый турист")
-                                        .font(
-                                            Font.custom("SF Pro Display", size: 22)
-                                                .weight(.medium)
-                                        )
+                                        .customFont(.medium, fontSizeForiPhone: 22, fontSizeForiPad: 22)
                                         .foregroundColor(.black)
                                     Spacer()
                                     
@@ -230,7 +208,7 @@ struct OrderView: View {
                             TotalInfoView(title: "Топливный сбор", value: bookingInfo.fuelCharge)
                             TotalInfoView(title: "Сервисный сбор", value: bookingInfo.serviceCharge)
                             let totalAmount = bookingInfo.tourPrice + bookingInfo.fuelCharge + bookingInfo.serviceCharge
-
+                            
                             AllAmountView(title: "К оплате", value: totalAmount)
                         }
                         .padding(.vertical, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
@@ -244,10 +222,7 @@ struct OrderView: View {
                         } label: {
                             VStack {
                                 Text("Оплатить \(totalAmount) ₽")
-                                    .font(
-                                        Font.custom("SF Pro Display", size: 16)
-                                            .weight(.medium)
-                                    )
+                                    .customFont(.medium, fontSizeForiPhone: 16, fontSizeForiPad: 16)
                                     .kerning(0.1)
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(.white)
@@ -260,7 +235,7 @@ struct OrderView: View {
                         .padding(.top, MyAdaptive.shared.setDynamicValue(iPhoneValue: 12, iPadValue: 12))
                         .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
                     }
-
+                    
                 } else {
                     Text("Error loading booking information")
                         .foregroundColor(.red)
@@ -291,16 +266,13 @@ struct OrderView: View {
             }) {
                 HStack {
                     Text("Добавить туриста")
-                        .font(
-                            Font.custom("SF Pro Display", size: 22)
-                                .weight(.medium)
-                        )
+                        .customFont(.medium, fontSizeForiPhone: 22, fontSizeForiPad: 22)
                         .foregroundColor(.black)
                     Spacer()
                     
                     Image("plus")
                         .resizable()
-                        .frame(width: 32, height: 32)
+                        .frame(width: MyAdaptive.shared.setDynamicValue(iPhoneValue: 32, iPadValue: 32), height: MyAdaptive.shared.setDynamicValue(iPhoneValue: 32, iPadValue: 32))
                 }
             }.padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
         }
@@ -321,10 +293,7 @@ struct OrderView: View {
                     } label: {
                         HStack {
                             Text(viewModel.currentTouristNames[index])
-                                .font(
-                                    Font.custom("SF Pro Display", size: 22)
-                                        .weight(.medium)
-                                )
+                                .customFont(.medium, fontSizeForiPhone: 22, fontSizeForiPad: 22)
                                 .foregroundColor(.black)
                             Spacer()
                             

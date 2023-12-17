@@ -18,16 +18,16 @@ struct CustomTextField: View {
         VStack(alignment: .leading) {
             ZStack(alignment: .leading) {
                 TextField(placeholder, text: $text)
-                    .font(Font.custom("SF Pro Display", size: 16))
+                    .font(Font.custom("SF Pro Display", size: MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16)))
                     .kerning(0.75)
                     .frame(height: MyAdaptive.shared.setDynamicValue(iPhoneValue: 52, iPadValue: 52))
                     .foregroundColor(Color(red: 0.08, green: 0.08, blue: 0.17))
                     .cornerRadius(MyAdaptive.shared.setDynamicValue(iPhoneValue: 10, iPadValue: 10))
                     .padding(.bottom, MyAdaptive.shared.setDynamicValue(iPhoneValue: 10, iPadValue: 10))
-
+                
                 if !text.isEmpty {
                     Text(title)
-                        .font(Font.custom("SF Pro Display", size: 12))
+                        .customFont(.medium, fontSizeForiPhone: 12, fontSizeForiPad: 12)
                         .kerning(0.12)
                         .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
                         .background(Color.clear)
