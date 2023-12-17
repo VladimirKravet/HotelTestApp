@@ -216,6 +216,7 @@ struct OrderView: View {
                         .background(.white)
                         .cornerRadius(MyAdaptive.shared.setDynamicValue(iPhoneValue: 15, iPadValue: 15))
                         Button {
+                            viewModel.hideKeyboard()
                             if viewModel.isValidInput(viewModel: viewModel) {
                                 coordinator.currentView = .doneView
                             }
