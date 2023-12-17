@@ -25,6 +25,14 @@ struct OrderView: View {
                     let totalAmount = bookingInfo.tourPrice + bookingInfo.fuelCharge + bookingInfo.serviceCharge
                     HStack {
                         Button {
+                            viewModel.resetAllInfo()
+                            viewModel.errorMail = true
+                            viewModel.errorPhone = true
+                            viewModel.errorSurName = true
+                            viewModel.errorName = true
+                            viewModel.errorCitizenship = true
+                            viewModel.errorPassportNumber = true
+                            viewModel.errorExpiredDateOfPassport = true
                             coordinator.currentView = .hotelMainView
                         } label: {
                             Image("backArrow")
@@ -181,7 +189,9 @@ struct OrderView: View {
                         .cornerRadius(MyAdaptive.shared.setDynamicValue(iPhoneValue: 15, iPadValue: 15))
                         VStack {
                             Button {
-                                isRectangeIsTapped.toggle()
+                                withAnimation {
+                                    isRectangeIsTapped.toggle()
+                                }
                             } label: {
                                 HStack {
                                     Text("Первый турист")
@@ -273,8 +283,10 @@ struct OrderView: View {
         VStack {
             Button(action: {
                 DispatchQueue.main.async {
-                    viewModel.addNewTourist()
-                    istouristColumnTapped.append(false)
+                    withAnimation {
+                        viewModel.addNewTourist()
+                        istouristColumnTapped.append(false)
+                    }
                 }
             }) {
                 HStack {
@@ -303,7 +315,9 @@ struct OrderView: View {
             ForEach(Array(viewModel.tourists.enumerated()), id: \.element.id) { index, subTask in
                 VStack {
                     Button {
-                        istouristColumnTapped[index].toggle()
+                        withAnimation {
+                            istouristColumnTapped[index].toggle()
+                        }
                     } label: {
                         HStack {
                             Text(viewModel.currentTouristNames[index])
@@ -314,7 +328,7 @@ struct OrderView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             
-                            Image(isRectangeIsTapped ? "arrowUp": "arrowDown")
+                            Image(self.istouristColumnTapped[index] ? "arrowUp": "arrowDown")
                                 .resizable()
                                 .frame(width: MyAdaptive.shared.setDynamicValue(iPhoneValue: 32, iPadValue: 32),height: MyAdaptive.shared.setDynamicValue(iPhoneValue: 32, iPadValue: 32))
                         }

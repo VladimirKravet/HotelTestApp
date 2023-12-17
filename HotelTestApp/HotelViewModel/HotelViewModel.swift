@@ -19,7 +19,7 @@ class HotelViewModel: ObservableObject {
     @Published var hotelInfo: HotelInfo?
     @Published var phone = "7"
     @Published var name = ""
-     let maskPhone = "+* (***) ***-**-**"
+    let maskPhone = "+* (***) ***-**-**"
     @Published var surName = ""
     @Published var dateOfBirth = ""
     @Published var citizenship = ""
@@ -35,15 +35,28 @@ class HotelViewModel: ObservableObject {
     @Published var email = ""
     @Published var errorSurName: Bool = true
     @Published var errorName: Bool = true
-        @Published var errorCitizenship: Bool = true
-        @Published var errorPassportNumber: Bool = true
-        @Published var errorExpiredDateOfPassport: Bool = true
+    @Published var errorCitizenship: Bool = true
+    @Published var errorPassportNumber: Bool = true
+    @Published var errorExpiredDateOfPassport: Bool = true
     
     init(coordinator: HotelCoordinator) {
         self.coordinator = coordinator
         fetchHotel()
         fetchRooms()
         fetchBooking()
+    }
+    func resetAllInfo() {
+        surName = ""
+        dateOfBirth = ""
+        citizenship = ""
+        passportNumber = ""
+        epiredDateOfPassport = ""
+        phone = "7"
+        name = ""
+        email = ""
+        tourists = []
+        currentTouristNumber = 1
+        addTouristCounter  = 0
     }
     
     func fetchHotel() {
@@ -99,29 +112,29 @@ class HotelViewModel: ObservableObject {
         guard let url = URL(string: "https://run.mocky.io/v3/63866c74-d593-432c-af8e-f279d1a8d2ff") else {
             return
         }
-
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
                 return
             }
-
+            
             guard let httpResponse = response as? HTTPURLResponse else {
                 print("Error: No HTTP response")
                 return
             }
-
+            
             print("HTTP Status Code: \(httpResponse.statusCode)")
-
+            
             guard let data = data else {
                 print("Error: No data received")
                 return
             }
-
+            
             if let jsonString = String(data: data, encoding: .utf8) {
                 print("Response JSON: \(jsonString)")
             }
-
+            
             do {
                 let decodedData = try JSONDecoder().decode(HotelInfo.self, from: data)
                 DispatchQueue.main.async {
@@ -153,14 +166,14 @@ class HotelViewModel: ObservableObject {
         objectWillChange.send()
     }
     func formatPrice(_ price: Int) -> String? {
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .decimal
-            numberFormatter.groupingSeparator = " "
-            numberFormatter.minimumFractionDigits = 0
-            numberFormatter.maximumFractionDigits = 0
-
-            return numberFormatter.string(from: NSNumber(value: price))
-        }
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.groupingSeparator = " "
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = 0
+        
+        return numberFormatter.string(from: NSNumber(value: price))
+    }
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -177,40 +190,42 @@ class HotelViewModel: ObservableObject {
         return numbers.count == 12
     }
     func validateSurName() -> Bool {
-            let trimmedSurName = surName.trimmingCharacters(in: .whitespacesAndNewlines)
-            errorSurName = trimmedSurName.isEmpty
-            return !errorSurName
-        }
+        let trimmedSurName = surName.trimmingCharacters(in: .whitespacesAndNewlines)
+        errorSurName = trimmedSurName.isEmpty
+        return !errorSurName
+    }
     func validateName() -> Bool {
-            let trimmedSurName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-            errorName = trimmedSurName.isEmpty
-            return !errorName
-        }
+        let trimmedSurName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        errorName = trimmedSurName.isEmpty
+        return !errorName
+    }
     func validateCitizenship() -> Bool {
-            let trimmedSurName = citizenship.trimmingCharacters(in: .whitespacesAndNewlines)
-            errorCitizenship = trimmedSurName.isEmpty
-            return !errorCitizenship
-        }
+        let trimmedSurName = citizenship.trimmingCharacters(in: .whitespacesAndNewlines)
+        errorCitizenship = trimmedSurName.isEmpty
+        return !errorCitizenship
+    }
     func validatePassportNumber() -> Bool {
-            let trimmedSurName = passportNumber.trimmingCharacters(in: .whitespacesAndNewlines)
-            errorPassportNumber = trimmedSurName.isEmpty
-            return !errorPassportNumber
-        }
+        let trimmedSurName = passportNumber.trimmingCharacters(in: .whitespacesAndNewlines)
+        errorPassportNumber = trimmedSurName.isEmpty
+        return !errorPassportNumber
+    }
     func validatePassportExpired() -> Bool {
-            let trimmedSurName = epiredDateOfPassport.trimmingCharacters(in: .whitespacesAndNewlines)
-            errorExpiredDateOfPassport = trimmedSurName.isEmpty
-            return !errorExpiredDateOfPassport
-        }
-
+        let trimmedSurName = epiredDateOfPassport.trimmingCharacters(in: .whitespacesAndNewlines)
+        errorExpiredDateOfPassport = trimmedSurName.isEmpty
+        return !errorExpiredDateOfPassport
+    }
+    
     func isValidInput(viewModel: HotelViewModel) -> Bool {
         var isValid = true
-
+        
         // Email validation
         if !viewModel.isValidEmail(viewModel.email) {
             viewModel.errorMail = false
             isValid = false
+        } else {
+            viewModel.errorMail = true
         }
-
+        
         // Phone validation
         if !viewModel.areAllDigitsEntered(phone: viewModel.phone) {
             viewModel.errorPhone = false
@@ -220,31 +235,37 @@ class HotelViewModel: ObservableObject {
         }
         if !viewModel.validateSurName() {
             viewModel.errorSurName = false
+            isValid = false
         } else {
             viewModel.errorSurName = true
         }
-
+        
         if !viewModel.validateName() {
             viewModel.errorName = false
+            isValid = false
         } else {
             viewModel.errorName = true
         }
         if !viewModel.validateCitizenship() {
             viewModel.errorCitizenship =  false
+            isValid = false
         } else {
             viewModel.errorCitizenship =  true
         }
         if !viewModel.validatePassportNumber() {
             viewModel.errorPassportNumber = false
+            isValid = false
         } else {
             viewModel.errorPassportNumber = true
         }
-
+        
         if !viewModel.validatePassportExpired() {
             viewModel.errorExpiredDateOfPassport =  false
+            isValid = false
         } else {
             viewModel.errorExpiredDateOfPassport =  true
         }
+        
         return isValid
     }
     

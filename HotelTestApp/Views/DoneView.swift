@@ -15,6 +15,14 @@ struct DoneView: View {
         VStack(spacing: 0) {
             HStack {
                 Button {
+                    viewModel.resetAllInfo()
+                    viewModel.errorMail = true
+                    viewModel.errorPhone = true
+                    viewModel.errorSurName = true
+                    viewModel.errorName = true
+                    viewModel.errorCitizenship = true
+                    viewModel.errorPassportNumber = true
+                    viewModel.errorExpiredDateOfPassport = true
                     coordinator.currentView = .orderView
                 } label: {
                     Image("backArrow")
@@ -56,6 +64,14 @@ struct DoneView: View {
             .padding(.horizontal, MyAdaptive.shared.setDynamicValue(iPhoneValue: 16, iPadValue: 16))
             Spacer()
             Button {
+                viewModel.resetAllInfo()
+                viewModel.errorMail = true
+                viewModel.errorPhone = true
+                viewModel.errorSurName = true
+                viewModel.errorName = true
+                viewModel.errorCitizenship = true
+                viewModel.errorPassportNumber = true
+                viewModel.errorExpiredDateOfPassport = true
                 coordinator.currentView = .firstView
             } label: {
                 VStack {
